@@ -300,15 +300,29 @@
   toggleBtn.addEventListener('click', () => {
     menu.classList.toggle('hidden');
   });
- document.getElementById("mailForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+  document.getElementById("mailForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent default form submission
 
-    const email = document.getElementById("userEmail").value;
-    const message = document.getElementById("userMessage").value;
+    const email = document.getElementById("userEmail").value.trim();
+    const message = document.getElementById("userMessage").value.trim();
 
-    // ONLY the message will appear in body, and email will show in subject line
+    if (!email || !message) {
+      alert("Please fill in both email and message.");
+      return;
+    }
+
+    // Construct the mailto link
     const mailtoLink = `mailto:irtaza.butt.9316@gmail.com?subject=From ${email}&body=${encodeURIComponent(message)}`;
+
+    // Show thank you alert
+    alert("Thank you for your message! Your email app will open now.");
+
+    // Trigger the mail client
     window.location.href = mailtoLink;
+
+    // Optional: clear form after sending
+    document.getElementById("mailForm").reset();
+  });
 </script>
 
 </body>
