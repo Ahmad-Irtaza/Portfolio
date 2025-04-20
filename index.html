@@ -292,6 +292,13 @@
   toggleBtn.addEventListener('click', () => {
     menu.classList.toggle('hidden');
   });
+
+      const form = document.getElementById('contactForm');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const message = document.getElementById('messageText').value;
+    const mailtoLink = `mailto:irtaza.butt.9316@gmail.com?body=${encodeURIComponent(message)}`;
+    window.location.href = mailtoLink;
 </script>
 
 </body>
