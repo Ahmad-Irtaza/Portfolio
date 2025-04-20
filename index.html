@@ -285,23 +285,37 @@
 
 
     </div>
+    
   </section>
-  
+  <div id="thankPopup" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-xl shadow-xl p-8 text-center max-w-sm animate-fade-in-up">
+    <svg class="mx-auto mb-4 text-green-500 w-12 h-12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Message Sent!</h3>
+    <p class="text-gray-600">Thanks for reaching out. Your mail app will open now 📬</p>
+  </div>
+</div>
 
   <!-- Footer -->
   <footer class="bg-gray-900 text-white text-center py-6 text-sm">
     Copyright © All rights reserved.
   </footer>
 
-  <script>
+ <script>
+  // Navbar toggle
   const toggleBtn = document.getElementById('nav-toggle');
   const menu = document.getElementById('nav-menu');
-
-  toggleBtn.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
+  toggleBtn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
   });
-  document.getElementById("mailForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevent default form submission
+
+  // Mail handler
+  const form = document.getElementById("mailForm");
+  const popup = document.getElementById("thankPopup");
+
+  form?.addEventListener("submit", function (e) {
+    e.preventDefault();
 
     const email = document.getElementById("userEmail").value.trim();
     const message = document.getElementById("userMessage").value.trim();
@@ -311,17 +325,14 @@
       return;
     }
 
-    // Construct the mailto link
-    const mailtoLink = `mailto:irtaza.butt.9316@gmail.com?subject=From ${email}&body=${encodeURIComponent(message)}`;
+    popup.classList.remove("hidden");
 
-    // Show thank you alert
-    alert("Thank you for your message! Your email app will open now.");
-
-    // Trigger the mail client
-    window.location.href = mailtoLink;
-
-    // Optional: clear form after sending
-    document.getElementById("mailForm").reset();
+    setTimeout(() => {
+      popup.classList.add("hidden");
+      const mailtoLink = `mailto:irtaza.butt.9316@gmail.com?subject=From ${email}&body=${encodeURIComponent(message)}`;
+      window.location.href = mailtoLink;
+      form.reset();
+    }, 2500);
   });
 </script>
 
