@@ -270,16 +270,17 @@
         <textarea name="message" rows="4" placeholder="Your message" class="w-full bg-white border border-gray-300 text-gray-800 p-3 rounded-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
         <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">Submit</button>
       </form> -->
-
-<form id="contactForm" class="space-y-4">
-  <input type="text" id="userName" placeholder="Your Name" required
-    class="w-full bg-white border border-gray-300 text-gray-800 p-3 rounded-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
+<form id="mailForm" class="space-y-4">
   <input type="email" id="userEmail" placeholder="Your Email" required
     class="w-full bg-white border border-gray-300 text-gray-800 p-3 rounded-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
   <textarea id="userMessage" rows="4" placeholder="Your message" required
     class="w-full bg-white border border-gray-300 text-gray-800 p-3 rounded-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+
   <button type="submit"
     class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">Submit</button>
+</form>
+
 </form>
 
 
@@ -299,15 +300,15 @@
   toggleBtn.addEventListener('click', () => {
     menu.classList.toggle('hidden');
   });
-
-    document.getElementById("contactForm").addEventListener("submit", function (e) {
+ document.getElementById("mailForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    
+
     const email = document.getElementById("userEmail").value;
     const message = document.getElementById("userMessage").value;
 
-    const mailto = `mailto:irtaza.butt.9316@gmail.com?subject=Message from ${email}&body=${encodeURIComponent(message)}`;
-    window.location.href = mailto;
+    // ONLY the message will appear in body, and email will show in subject line
+    const mailtoLink = `mailto:irtaza.butt.9316@gmail.com?subject=From ${email}&body=${encodeURIComponent(message)}`;
+    window.location.href = mailtoLink;
 </script>
 
 </body>
